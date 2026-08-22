@@ -1,0 +1,56 @@
+<div class="auth-wrapper">
+  <div class="auth-container">
+    @if(!otp())
+  {
+    <div style="text-align: center; margin-bottom: 10px; font-weight: bold; color: #ff0000; letter-spacing: 2px;">RECOFIT</div>
+    <h2>CREATE ACCOUNT</h2>
+    <p class="sub-text">Join the RECOFIT elite team today.</p>
+      
+    
+      <p style="color: #ff0000; text-decoration: none; font-weight: bold;">{{Message()}}</p>
+  
+    <div class="input-row">
+      <div class="input-group">
+        <label>Username</label>
+        <input [(ngModel)]="RegisterInfo.CustomerName" type="text" placeholder="Hussain Ali">
+      </div>
+      <div class="input-group">
+        <label>Email Address</label>
+        <input [(ngModel)]="RegisterInfo.Email" type="email" placeholder="name@example.com">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Password</label>
+      <input [(ngModel)]="RegisterInfo.Password" type="password" placeholder="••••••••" (keyup.enter)="Register()">
+    </div>
+
+    <div class="input-row">
+      <div class="input-group">
+        <label>Phone Number</label>
+        <input [(ngModel)]="RegisterInfo.PhoneNumber" type="text" placeholder="123-456-7890" (keyup.enter)="Register()">
+      </div>
+      <div class="input-group">
+        <label>Plan Type</label>
+        <select [(ngModel)]="RegisterInfo.PlanType">
+          <option value="" class="select-option">Select Plan</option>
+          <option [value]="1" class="select-option">Monthly</option>
+          <option [value]="6" class="select-option">Quarterly</option>
+          <option [value]="12" class="select-option">Yearly</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn-gradient" [disabled]="Isloading()" (click)="Register()">{{Isloading() ? '...Loading' :'Sigup'}}</button>
+
+    <div class="auth-links">
+  <p>Already have an account? <a routerLink="/login">Sign In</a></p>
+  <p style="margin-top: 8px;">Forgot Password? <a routerLink="/resetpassword">Reset Here</a></p>
+</div>
+  }
+@else{
+  <input type="text" [(ngModel)]="OTP" placeholder="Enter OTP">
+  <button class="btn-gradient" [disabled]="Isloading()" (click)="RegisterOtp()">{{Isloading() ? '...Loading' :'Verify OTP'}}</button>
+}
+  </div>
+</div>

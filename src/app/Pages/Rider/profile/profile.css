@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+.profile-page-wrapper {
+  padding: 2rem;
+  background-color: #0b0e14;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ==========================================
+   1. PROFILE HEADER CARD
+   ========================================== */
+.profile-header-card {
+  background: #141a23;
+  border: 1px solid #232d3d;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.profile-cover {
+  height: 100px;
+  background: linear-gradient(90deg, #ff5722 0%, #141a23 100%);
+  opacity: 0.8;
+}
+
+.profile-main-info {
+  padding: 0 2rem 1.5rem 2rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;
+  margin-top: -40px;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.avatar-container {
+  position: relative;
+}
+
+.avatar-box {
+  width: 90px;
+  height: 90px;
+  background-color: #1a222e;
+  border: 4px solid #141a23;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  color: #ff5722;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.status-indicator.online {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  width: 14px;
+  height: 14px;
+  background-color: #10b981;
+  border: 2px solid #141a23;
+  border-radius: 50%;
+}
+
+.user-text-info {
+  flex: 1;
+}
+
+.name-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.name-badge-row h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.role-badge {
+  background: rgba(255, 87, 34, 0.15);
+  color: #ff5722;
+  border: 1px solid rgba(255, 87, 34, 0.3);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.tagline {
+  color: #8c9ba5;
+  font-size: 0.85rem;
+  margin: 0.4rem 0 0 0;
+}
+
+.btn-secondary {
+  background: #1c2432;
+  color: #ffffff;
+  border: 1px solid #283445;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: #283445;
+}
+
+/* ==========================================
+   2. QUICK STATS CARDS
+   ========================================== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+}
+
+.stat-card {
+  background: #141a23;
+  border: 1px solid #232d3d;
+  border-radius: 12px;
+  padding: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.stat-icon.orange { background: rgba(255, 87, 34, 0.12); color: #ff5722; }
+.stat-icon.green  { background: rgba(16, 185, 129, 0.12); color: #10b981; }
+.stat-icon.blue   { background: rgba(56, 189, 248, 0.12); color: #38bdf8; }
+
+.stat-data {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #8c9ba5;
+}
+
+/* ==========================================
+   3. TABLE CARD SECTION
+   ========================================== */
+.table-card {
+  background: #141a23;
+  border: 1px solid #232d3d;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.table-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.table-card-header h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 0 0 0.2rem 0;
+}
+
+.table-card-header p {
+  color: #8c9ba5;
+  font-size: 0.825rem;
+  margin: 0;
+}
+
+.btn-filter {
+  background: #1a222e;
+  border: 1px solid #283445;
+  color: #8c9ba5;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid #1c2432;
+}
+
+.cyber-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.cyber-table thead tr {
+  background-color: #1a222e;
+  border-bottom: 1px solid #232d3d;
+}
+
+.cyber-table th {
+  padding: 0.9rem 1.2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #38bdf8;
+  text-transform: uppercase;
+}
+
+.cyber-table tbody tr {
+  border-bottom: 1px solid #1c2432;
+  transition: background-color 0.2s ease;
+}
+
+.cyber-table tbody tr:hover {
+  background-color: #1c2432;
+}
+
+.cyber-table td {
+  padding: 0.9rem 1.2rem;
+  vertical-align: middle;
+  font-size: 0.875rem;
+  color: #d0d7de;
+}
+
+.text-right { text-align: right; }
+
+/* Table Content Details */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #ff5722, #f4511e);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.8rem;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.rider-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.item-name { color: #cbd5e1; font-weight: 500; }
+.time-col { color: #8c9ba5; font-size: 0.8rem; font-family: monospace; }
+
+.btn-action {
+  background: #232a3b;
+  color: #ffffff;
+  border: 1px solid #3b465e;
+  padding: 0.35rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-action:hover {
+  background: #ff5722;
+  border-color: #ff5722;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem !important;
+  color: #8c9ba5;
+}
+
+/* Responsive Rules */
+@media (max-width: 768px) {
+  .profile-page-wrapper { padding: 1rem; }
+  .profile-main-info { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .btn-secondary { width: 100%; text-align: center; }
+}

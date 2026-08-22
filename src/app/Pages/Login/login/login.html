@@ -1,0 +1,43 @@
+<div class="auth-wrapper">
+  <div class="auth-container">
+    <div class="brand-logo">RECOFIT</div>
+    <h2>PLEASE LOG IN</h2>
+
+    <form (ngSubmit)="Login()" #loginForm="ngForm" ngNativeValidate> 
+      <div class="input-group">
+        <label>Email Address</label>
+        <input 
+          type="email" 
+          name="email" 
+          placeholder="Enter your email"
+          [disabled]="Isloading()" 
+          [(ngModel)]="LoginInfo.Email" 
+          (keyup.enter)="Login()" 
+          required>
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input 
+          type="password" 
+          name="password" 
+          placeholder="Enter your password"
+          [disabled]="Isloading()" 
+          [(ngModel)]="LoginInfo.Password" 
+          (keyup.enter)="Login()" 
+          required>
+      </div>
+
+      <input 
+        type="submit" 
+        [value]="Isloading() ? '...Loading' : 'Login'" 
+        class="btn-gradient" 
+        [disabled]="Isloading()">
+    </form>
+
+    <div class="auth-links">
+      <p>Don't have an account? <a routerLink="/signup">Sign Up</a></p>
+      <p>Forgot Password? <a routerLink="/resetpassword">Reset Here</a></p>
+    </div>
+  </div>
+</div>

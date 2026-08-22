@@ -1,0 +1,57 @@
+<div class="tactical-container">
+  
+  <!-- Header Title -->
+  <div class="tactical-header">
+    <div class="header-tag">
+      <span class="radar-ping"></span>
+      <span>REWARD DISPATCH RADAR</span>
+    </div>
+    <h2>ACTIVE SHIPMENTS</h2>
+    <p>Real-time reward claim requests requiring immediate dispatch.</p>
+  </div>
+
+  <!-- Cards / Grid View (Replaces Boring Tables) -->
+  <div class="cards-grid">
+    @for(reward of orderreward; track $index) {
+      <div class="dispatch-card">
+        <!-- Top Card Status Bar -->
+        <div class="card-top">
+          <span class="time-stamp">⏱️ {{reward.createAt}}</span>
+          <span class="status-badge">PENDING</span>
+        </div>
+
+        <!-- Main Info -->
+        <div class="card-body">
+          <div class="user-profile">
+            <div class="cyber-avatar">
+              {{reward.userName ? reward.userName.charAt(0) : 'U'}}
+            </div>
+            <div>
+              <span class="label">ATHLETE</span>
+              <h4 class="user-name">{{reward.userName}}</h4>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <span class="label">REWARD ITEM</span>
+            <span class="item-value">🎁 {{reward.rewardName}}</span>
+          </div>
+
+          <div class="info-row">
+            <span class="label">DESTINATION</span>
+            <span class="address-value">📍 {{reward.deliveryAddress}}</span>
+          </div>
+        </div>
+
+        <!-- Action Button -->
+        <div class="card-footer">
+          <button class="btn-cyan-glow" (click)="RiderAccept(reward.id)">
+            <span>INITIALIZE DELIVERY</span>
+            <div class="btn-arrow">→</div>
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+
+</div>

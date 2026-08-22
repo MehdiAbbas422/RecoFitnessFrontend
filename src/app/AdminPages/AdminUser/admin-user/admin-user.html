@@ -1,0 +1,123 @@
+<div class="admin-dashboard">
+    <header class="dashboard-header">
+        <h1 class="page-title">Gym Members Admin Dashboard</h1>
+        <div class="user-profile">
+            <div class="profile-avatar">ADMIN</div>
+            <span class="profile-name">System Administrator</span>
+        </div>
+    </header>
+
+    <div class="action-bar">
+        <div class="search-panel">
+            <div class="search-input-group">
+                <input
+                    type="text"
+                    [(ngModel)]="search"
+                    (input)="onSearchInputChange()"
+                    placeholder="Search users by name, email, or status..."
+                    (keyup)="searchUsers()"
+                    #searchInput
+                />
+                <button (click)="searchUsers()" class="btn-search">Search</button>
+            </div>
+            @if (searchSuggestions.length > 0) {
+            <ul class="search-suggestions">
+                @for (suggestion of searchSuggestions; track suggestion.id) {
+                <li (click)="selectSuggestion(suggestion)">
+                    {{ suggestion.customerName }} ({{ suggestion.email }})
+                </li>
+                }
+            </ul>
+            }
+        </div>
+    </div>
+
+    @if (deactivationUser) {
+    <div class="modal-overlay">
+        <div class="modal deactivation-dialog">
+            <header class="modal-header">
+                <h3>Deactivate User: {{deactivationUser.customerName}}</h3>
+                <button (click)="cancelDeactivation()" class="btn-close-modal">&times;</button>
+            </header>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="deactivationReason">Select or Enter Reason:</label>
+                    <input
+                        type="text"
+                        [(ngModel)]="deactivationReason"
+                        placeholder="Select or enter reason..."
+                        list="deactivationReasons"
+                        id="deactivationReason"
+                    />
+                    <datalist id="deactivationReasons">
+                        <option *for="let reason of commonDeactivationReasons" [value]="reason">{{reason}}</option>
+                    </datalist>
+                </div>
+            </div>
+            <footer class="modal-footer">
+                <button (click)="confirmDeactivation()" class="btn-confirm-deactivation">
+                    Confirm Deactivation
+                </button>
+                <button (click)="cancelDeactivation()" class="btn-cancel">Cancel</button>
+            </footer>
+        </div>
+    </div>
+    }
+
+    <table class="users-table">
+        <thead>
+            <tr>
+                <th>Customer Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Plan Type</th>
+                <th>Roles</th>
+                <th>Payment Status</th>
+                <th>Streak (Months)</th>
+                <th>Expiry Date</th>
+                <th>Amount Paid</th>
+                <th>Joined At</th>
+                <th>Subscription Status</th>
+                <th class="column-action">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (user of users; track user.id) {
+            <tr [class.selected]="deactivationUser && deactivationUser.id === user.id">
+                <td data-label="Customer Name">{{ user.customerName }}</td>
+                <td data-label="Email">{{ user.email }}</td>
+                <td data-label="Phone">{{ user.phoneNumber }}</td>
+                <td data-label="Plan Type">
+                    <span [ngClass]="getPlanTypeClass(user.planType)">
+                        {{ user.planType}}
+                    </span>
+                </td>
+                <td data-label="Roles">{{ user.roles }}</td>
+                <td data-label="Payment Status">
+                    <span [ngClass]="getPaymentStatusClass(user.paymentStatus)">
+                        {{ user.paymentStatus }}
+                    </span>
+                </td>
+                <td data-label="Streak">{{ user.streakMouths }}</td>
+                <td data-label="Expiry Date">{{ user.expiryDate | date:'mediumDate' }}</td>
+                <td data-label="Amount Paid">{{ user.amountPaid | currency }}</td>
+                <td data-label="Joined">{{ user.createAt | date:'mediumDate' }}</td>
+                <td data-label="Subscription Status">
+                    <span [ngClass]="getSubscriptionStatusClass(user.subscriptionStatus)">
+                        {{ user.subscriptionStatus }}
+                    </span>
+                </td>
+                <td data-label="Action" class="column-action">
+                    <button (click)="DeActivateUserButton(user)" class="btn-deactivate-user">
+                        Deactivate
+                    </button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="admin-summary">
+        <div class="total-users">Total Registered Users: {{users.length}}</div>
+        </div>
+</div>

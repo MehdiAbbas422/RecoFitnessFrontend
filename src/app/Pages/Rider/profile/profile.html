@@ -1,0 +1,119 @@
+<div class="profile-page-wrapper">
+  
+  <!-- 1. TOP HERO / PROFILE HEADER -->
+  <div class="profile-header-card">
+    <div class="profile-cover"></div>
+    <div class="profile-main-info">
+      <div class="avatar-container">
+        <div class="avatar-box">
+          <i class="fa-solid fa-person-biking"></i>
+        </div>
+        <span class="status-indicator online"></span>
+      </div>
+      
+      <div class="user-text-info">
+        <div class="name-badge-row">
+          <h2>Rider Profile</h2>
+          <span class="role-badge">ACTIVE RIDER</span>
+        </div>
+        <p class="tagline"><i class="fa-solid fa-location-dot"></i> Recofit Logistics & Express Delivery</p>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn-secondary"><i class="fa-solid fa-pen"></i> Edit Profile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. QUICK STATS CARDS -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon orange">
+        <i class="fa-solid fa-truck-fast"></i>
+      </div>
+      <div class="stat-data">
+        <span class="stat-value">{{ delivary.length || 0 }}</span>
+        <span class="stat-label">Total Deliveries</span>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon green">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <div class="stat-data">
+        <span class="stat-value">98%</span>
+        <span class="stat-label">On-Time Rate</span>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon blue">
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <div class="stat-data">
+        <span class="stat-value">4.9</span>
+        <span class="stat-label">Rider Rating</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. DELIVERY HISTORY TABLE SECTION -->
+  <div class="table-card">
+    <div class="table-card-header">
+      <div>
+        <h3>Recent Delivery Orders</h3>
+        <p>Real-time log of assigned customer deliveries</p>
+      </div>
+      <button class="btn-filter"><i class="fa-solid fa-filter"></i> Filter</button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="cyber-table">
+        <thead>
+          <tr>
+            <th>USER</th>
+            <th>RIDER</th>
+            <th>ORDER ITEM</th>
+            <th>TIMESTAMP</th>
+            <th class="text-right">ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(dev of delivary; track $index) {
+            <tr>
+              <td>
+                <div class="user-info">
+                  <div class="user-avatar">{{ dev.userName ? dev.userName.charAt(0).toUpperCase() : 'U' }}</div>
+                  <span class="user-name">{{ dev.userName }}</span>
+                </div>
+              </td>
+              <td>
+                <span class="rider-pill">
+                  <i class="fa-solid fa-person-biking"></i> {{ dev.riderName }}
+                </span>
+              </td>
+              <td>
+                <span class="item-name">{{ dev.orderName }}</span>
+              </td>
+              <td class="time-col">{{ dev.createAt }}</td>
+              <td class="text-right">
+                <button class="btn-action">View Order</button>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="5" class="empty-state">
+                <div class="empty-box">
+                  <i class="fa-solid fa-box-open"></i>
+                  <p>No Active Deliveries Found</p>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

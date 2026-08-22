@@ -1,0 +1,232 @@
+@if (!NavBarLocation() && !RiderNavLocation()) {
+  <!-- ================= USER NAVBAR ================= -->
+  <header class="navbar-container">
+    <div class="brand-container">
+      <div class="logo-box">RF</div>
+      <div class="brand-text">
+        <h2>RECOFIT</h2>
+        <small>Your Fitness Companion</small>
+      </div>
+    </div>
+
+    <!-- Mobile Hamburger Toggle Button -->
+    <button class="menu-toggle" (click)="isMenuOpen = !isMenuOpen">
+      <i class="fa-solid" [ngClass]="isMenuOpen ? 'fa-xmark' : 'fa-bars'"></i>
+    </button>
+
+    <!-- Nav Wrapper (Mobile Dropdown Target) -->
+    <div class="nav-wrapper" [class.show]="isMenuOpen">
+      <nav class="menu">
+        <a routerLink="/" routerLinkActive="active" class="menu-item" (click)="isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-house"></i></span>
+          <span class="text">Dashboard</span>
+        </a>
+
+        <a routerLink="/workouts" routerLinkActive="active" class="menu-item" (click)="isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-dumbbell"></i></span>
+          <span class="text">Iron Room</span>
+        </a>
+
+        <a routerLink="/diet" routerLinkActive="active" class="menu-item" (click)="isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-bowl-food"></i></span>
+          <span class="text">Anabolic Diet</span>
+        </a>
+
+        <a routerLink="/chatbot" routerLinkActive="active" class="menu-item" (click)="isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-robot"></i></span>
+          <span class="text">Renic Ai</span>
+        </a>
+
+        <a class="menu-item" (click)="Payment(); isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-credit-card"></i></span>
+          <span class="text">Online Payment</span>
+        </a>
+
+        @if (Role === 'Admin') {
+          <a 
+            routerLink="/admin-earning" 
+            routerLinkActive="active" 
+            class="menu-item" 
+            (click)="NavBarLocation.set(true); isMenuOpen = false">
+            <span class="icon"><i class="fa-solid fa-user-gear"></i></span>
+            <span class="text">Admin Dashboard</span>
+          </a>
+          <a 
+            routerLink="/Rider-Profile" 
+            routerLinkActive="active" 
+            class="menu-item" 
+            (click)="RiderNavLocation.set(true); isMenuOpen = false">
+            <span class="icon"><i class="fa-solid fa-user-gear"></i></span>
+            <span class="text">Rider Dashboard</span>
+          </a>
+        }
+      </nav>
+
+      <div class="navbar-actions">
+        <button class="menu-item action-btn logout" (click)="Logout(); isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+          <span class="text">Logout</span>
+        </button>
+      </div>
+    </div>
+  </header>
+} @else if (NavBarLocation() && Role === 'Admin') {
+  <!-- ================= ADMIN NAVBAR ================= -->
+  <header class="navbar-container">
+    <div class="brand-container">
+      <div class="logo-box">RF</div>
+      <div class="brand-text">
+        <h2>RECOFIT</h2>
+        <small>Your Fitness Companion</small>
+      </div>
+    </div>
+
+    <!-- Mobile Hamburger Toggle Button -->
+    <button class="menu-toggle" (click)="isMenuOpen = !isMenuOpen">
+      <i class="fa-solid" [ngClass]="isMenuOpen ? 'fa-xmark' : 'fa-bars'"></i>
+    </button>
+
+    <!-- Nav Wrapper (Mobile Dropdown Target) -->
+    <div class="nav-wrapper" [class.show]="isMenuOpen">
+      <nav class="menu">
+        <a routerLink="/admin-earning" routerLinkActive="active" class="menu-item" (click)="isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-chart-line"></i></span>
+          <span class="text">Admin Dashboard</span>
+        </a>
+
+        <a routerLink="/admincontrol" routerLinkActive="active" class="menu-item" (click)="isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-sliders"></i></span>
+          <span class="text">Admin Control</span>
+        </a>
+
+        <a routerLink="/adminuser" routerLinkActive="active" class="menu-item" (click)="isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-users"></i></span>
+          <span class="text">Admin User</span>
+        </a>
+
+        <a routerLink="/admin-reward" routerLinkActive="active" class="menu-item" (click)="isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-award"></i></span>
+          <span class="text">Admin Reward</span>
+        </a>
+        <a routerLink="/reward-given" routerLinkActive="active" class="menu-item" (click)="isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-award"></i></span>
+          <span class="text">Admin Reward Given</span>
+        </a>
+
+        <a routerLink="/chatbot" routerLinkActive="active" class="menu-item" (click)="isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-robot"></i></span>
+          <span class="text">Renic Ai</span>
+        </a>
+
+        <a class="menu-item" (click)="Payment(); isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-credit-card"></i></span>
+          <span class="text">Online Payment</span>
+        </a>
+
+        <a 
+          routerLink="/" 
+          routerLinkActive="active" 
+          class="menu-item" 
+          (click)="NavBarLocation.set(false); isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-house-user"></i></span>
+          <span class="text">User Dashboard</span>
+        </a>
+
+        <a 
+          routerLink="/Rider-Profile" 
+          routerLinkActive="active" 
+          class="menu-item" 
+          (click)="RiderNavLocation.set(true); NavBarLocation.set(false); isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-user-gear"></i></span>
+          <span class="text">Rider Dashboard</span>
+        </a>
+      </nav>
+
+      <div class="navbar-actions">
+        <button class="menu-item action-btn logout" (click)="Logout(); isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+          <span class="text">Logout</span>
+        </button>
+      </div>
+    </div>
+  </header>
+}
+
+@if (RiderNavLocation() || Role == 'Rider' ) {
+  <!-- ================= RIDER NAVBAR ================= -->
+  <header class="navbar-container">
+    <div class="brand-container">
+      <div class="logo-box">RF</div>
+      <div class="brand-text">
+        <h2>RECOFIT</h2>
+        <small>Your Fitness Companion</small>
+      </div>
+    </div>
+
+    <!-- Mobile Hamburger Toggle Button -->
+    <button class="menu-toggle" (click)="isMenuOpen = !isMenuOpen">
+      <i class="fa-solid" [ngClass]="isMenuOpen ? 'fa-xmark' : 'fa-bars'"></i>
+    </button>
+
+    <!-- Nav Wrapper (Mobile Dropdown Target) -->
+    <div class="nav-wrapper" [class.show]="isMenuOpen">
+      <nav class="menu">
+        <a routerLink="/" routerLinkActive="active" class="menu-item" (click)="isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-house"></i></span>
+          <span class="text">Dashboard</span>
+        </a>
+
+        <a routerLink="/Rider-Profile" routerLinkActive="active" class="menu-item" (click)="isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-chart-line"></i></span>
+          <span class="text">Profile</span>
+        </a>
+
+        <a routerLink="/workouts" routerLinkActive="active" class="menu-item" (click)="isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-dumbbell"></i></span>
+          <span class="text">Iron Room</span>
+        </a>
+
+        <a routerLink="/diet" routerLinkActive="active" class="menu-item" (click)="isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-bowl-food"></i></span>
+          <span class="text">Anabolic Diet</span>
+        </a>
+
+        <a routerLink="/chatbot" routerLinkActive="active" class="menu-item" (click)="isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-robot"></i></span>
+          <span class="text">Renic Ai</span>
+        </a>
+
+        <a routerLink="/reward-delivery" routerLinkActive="active" class="menu-item" (click)="isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-bowl-food"></i></span>
+          <span class="text">Order Delivery</span>
+        </a>
+
+        @if (Role === 'Admin') {
+          <a 
+            routerLink="/admin-earning" 
+            routerLinkActive="active" 
+            class="menu-item" 
+            (click)="NavBarLocation.set(true); RiderNavLocation.set(false); isMenuOpen = false">
+            <span class="icon"><i class="fa-solid fa-user-gear"></i></span>
+            <span class="text">Admin Dashboard</span>
+          </a>
+          <a 
+            routerLink="/" 
+            routerLinkActive="active" 
+            class="menu-item" 
+            (click)="RiderNavLocation.set(false); isMenuOpen = false">
+            <span class="icon"><i class="fa-solid fa-user-gear"></i></span>
+            <span class="text">Home</span>
+          </a>
+        }
+      </nav>
+
+      <div class="navbar-actions">
+        <button class="menu-item action-btn logout" (click)="Logout(); isMenuOpen = false">
+          <span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+          <span class="text">Logout</span>
+        </button>
+      </div>
+    </div>
+  </header>
+}

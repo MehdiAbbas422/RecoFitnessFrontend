@@ -1,0 +1,70 @@
+<div class="wrapper">
+
+  <h1>Overview</h1>
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>Gross Revenue</h3>
+      <span>$171,610.25</span>
+      <p>+5.29%</p>
+      <button (click)="Load()">View Details</button>
+    </div>
+
+    <div class="card">
+      <h3>Auto Trades</h3>
+      <span>3612</span>
+      <p>+1259</p>
+    </div>
+
+    <div class="card">
+      <h3>New Assets</h3>
+      <span>53</span>
+      <p>+21</p>
+    </div>
+
+  </div>
+
+  <div class="content">
+
+    <div class="chart-box">
+
+      <h2>Auto Trades Chart</h2>
+
+      <apx-chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [stroke]="chartOptions.stroke"
+        [xaxis]="chartOptions.xaxis"
+        [grid]="chartOptions.grid"
+        [tooltip]="chartOptions.tooltip">
+      </apx-chart>
+
+            <apx-chart
+        [series]="UserchartOptions.series"
+        [chart]="UserchartOptions.chart"
+        [stroke]="UserchartOptions.stroke"
+        [xaxis]="UserchartOptions.xaxis"
+        [grid]="UserchartOptions.grid"
+        [tooltip]="UserchartOptions.tooltip">
+      </apx-chart>
+
+    </div>
+
+    <div class="asset-box">
+
+      <h2>Assets</h2>
+
+      <div
+        class="asset"
+        *ngFor="let item of assets">
+
+        {{item}}
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,94 @@
+<div class="dark-gym-page">
+  
+  <!-- Hero Reward Banner -->
+  <div class="reward-hero-card">
+    <div class="hero-left">
+      <span class="badge-tag">🔥 REWARD UNLOCKED</span>
+      <h1>CLAIM YOUR FUEL</h1>
+      <p>Workout completed! Your earned gym nutrition is ready for instant dispatch.</p>
+    </div>
+    <div class="hero-right">
+      <div class="points-box">
+        <span class="p-label">PUMP POINTS</span>
+        <span class="p-value">2,450 <small>PTS</small></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Gym Metrics / Cards (Fills up empty space) -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">🏋️‍♂️</div>
+      <div>
+        <h4>Active Workout</h4>
+        <p>Hypertrophy Phase 2</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">⚡</div>
+      <div>
+        <h4>Delivery Mode</h4>
+        <p>Express Gym Dispatch</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🏆</div>
+      <div>
+        <h4>Current Tier</h4>
+        <p>Gold Athlete</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table Container -->
+  <div class="table-card">
+    <div class="table-header">
+      <div class="live-status">
+        <span class="pulse-dot"></span>
+        <h3>LIVE DELIVERY STATUS</h3>
+      </div>
+      <span class="count-badge">{{delivery ? delivery.length : 1}} Pending</span>
+    </div>
+
+    <div class="table-responsive">
+      <table class="cyber-table">
+        <thead>
+          <tr>
+            <th>USER</th>
+            <th>RIDER</th>
+            <th>ORDER ITEM</th>
+            <th>TIMESTAMP</th>
+            <th class="text-right">ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(dev of delivery; track $index){
+            <tr>
+              <td>
+                <div class="user-info">
+                  <div class="user-avatar">{{dev.userName ? dev.userName.charAt(0) : 'U'}}</div>
+                  <span class="user-name">{{dev.userName}}</span>
+                </div>
+              </td>
+              <td>
+                <span class="rider-pill">
+                  🚴 {{dev.riderName}}
+                </span>
+              </td>
+              <td>
+                <span class="item-name">🥤 {{dev.orderName}}</span>
+              </td>
+              <td class="time-col">{{dev.createAt}}</td>
+              <td class="text-right">
+                <button class="btn-accept" (click)="Acceptdelivery(dev.id)">
+                  ACCEPT DELIVERY
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

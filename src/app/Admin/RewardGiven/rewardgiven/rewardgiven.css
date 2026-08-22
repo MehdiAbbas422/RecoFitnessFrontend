@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@500;700&display=swap');
+
+:host {
+  display: block;
+  background-color: #030712 !important;
+  min-height: 100vh;
+  color: #f3f4f6;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.matrix-audit-wrapper {
+  background-color: #030712;
+  min-height: 100vh;
+  padding: 2.5rem;
+  max-width: 1450px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Console Header */
+.console-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+  background: radial-gradient(circle at top left, rgba(16, 185, 129, 0.05), transparent 50%), #0b0f19;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 16px;
+  padding: 1.8rem 2.2rem;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.glowing-node {
+  width: 9px;
+  height: 9px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #10b981;
+}
+
+.system-text {
+  font-family: 'Fira Code', monospace;
+  color: #10b981;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
+.matrix-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.2rem;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+/* Console Search Bar */
+.search-box {
+  background: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 320px;
+  transition: all 0.3s;
+}
+
+.search-box:focus-within {
+  border-color: #10b981;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+}
+
+.search-box input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+/* Matrix Table Shell */
+.audit-matrix-card {
+  background: #0b0f19;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+.matrix-table-container {
+  overflow-x: auto;
+}
+
+.matrix-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px; /* Floating Rows Effect */
+  text-align: left;
+}
+
+.matrix-table th {
+  font-family: 'Fira Code', monospace;
+  color: #6b7280;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 12px 18px;
+  border: none;
+}
+
+/* Floating Row Styling */
+.matrix-row {
+  background: #111827;
+  transition: all 0.25s ease;
+}
+
+.matrix-row td {
+  padding: 16px 18px;
+  vertical-align: middle;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.matrix-row td:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.matrix-row td:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Row Hover Lift Effect */
+.matrix-row:hover {
+  background: #1f2937;
+  transform: scale(1.008);
+}
+
+.matrix-row:hover td {
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+/* Specific Cell Formatting */
+.hex-id {
+  font-family: 'Fira Code', monospace;
+  color: #10b981;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.hex-symbol {
+  color: #374151;
+}
+
+.item-capsule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 8px 14px;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.capsule-icon {
+  font-size: 1.2rem;
+}
+
+.item-title {
+  display: block;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 0.95rem;
+}
+
+.item-sub {
+  display: block;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Agent Card Cells (Rider & User) */
+.agent-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.agent-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.agent-card.rider .agent-avatar {
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.agent-card.athlete .agent-avatar {
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.agent-data {
+  display: flex;
+  flex-direction: column;
+}
+
+.agent-name {
+  font-weight: 700;
+  color: #f3f4f6;
+  font-size: 0.9rem;
+}
+
+.agent-email {
+  font-size: 0.78rem;
+  color: #9ca3af;
+}
+
+.agent-id {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.7rem;
+  color: #4b5563;
+}
+
+/* Meta Pills */
+.meta-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.order-tag {
+  font-family: 'Fira Code', monospace;
+  background: #374151;
+  color: #e5e7eb;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  width: fit-content;
+}
+
+.time-tag {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}

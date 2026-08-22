@@ -1,0 +1,44 @@
+<div class="gym-bot-wrapper">
+  
+  <!-- Sleek industrial Header -->
+  <div class="gym-bot-header">
+    <div class="status-dot"></div>
+    <span class="header-title">IRON CHAT | GYM ASSISTANT</span>
+    <span class="header-subtitle">Your Digital Trainer</span>
+  </div>
+
+  <!-- Messages Box (Flex Column) -->
+  <div class="gym-bot-messages">
+    @for(chat of messages(); track $index) {
+      <div class="msg-wrapper" [class.user-align]="chat.sender === 'user'">
+        <!-- Profile Icon/Letter -->
+        <div class="msg-avatar">
+          {{ chat.sender === 'user' ? 'U' : 'RF' }}
+        </div>
+        
+        <!-- The Message Bubble -->
+        <div class="msg-bubble" [class.user-bubble]="chat.sender === 'user'">
+          <!-- Agay 'marked' library logic use karein is bubble k andar -->
+                  @if (chat.sender === 'user') {
+          {{ chat.message }}
+        } @else {
+          <div [innerHTML]="FormatMessage(chat.message)"></div>
+        }
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Industrial Input Area -->
+  <div class="gym-bot-input-frame">
+    <input 
+      type="text" 
+      placeholder="Ask about workout, protein, supplements..." 
+      [(ngModel)]="userChat" 
+      (keyup.enter)="SendMessage()"
+    />
+    <button (click)="SendMessage()" [disabled]="isloading()">
+      {{ isloading() ? '...' : 'PUMP IT' }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<div class="matrix-audit-wrapper">
+  
+  <!-- Cyber Console Header -->
+  <div class="console-banner">
+    <div class="console-left">
+      <div class="status-indicator">
+        <span class="glowing-node"></span>
+        <span class="system-text">AUDIT SYSTEM v2.4 // ACTIVE</span>
+      </div>
+      <h1 class="matrix-title">TRANSACTION LEDGER</h1>
+    </div>
+
+    <!-- Live Search / Action Filter Toolbar -->
+    <div class="console-actions">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Search Rider, User or Order ID..." [(ngModel)]="keyword" (keyup)="LoadRewardGiven()" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Unique Grid Table View -->
+  <div class="audit-matrix-card">
+    <div class="matrix-table-container">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th class="col-id">LOG ID</th>
+            <th class="col-reward">REWARD ITEM</th>
+            <th class="col-rider">DISPATCH RIDER</th>
+            <th class="col-user">RECIPENT ATHLETE</th>
+            <th class="col-meta">TRANSACTION METRICS</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(reward of rewardgiven; track $index) {
+            <tr class="matrix-row">
+              <!-- Log ID -->
+              <td class="col-id">
+                <div class="hex-id">
+                  <span class="hex-symbol">#</span>{{reward.id}}
+                </div>
+              </td>
+
+              <!-- Reward Item -->
+              <td class="col-reward">
+                <div class="item-capsule">
+                  <span class="capsule-icon">📦</span>
+                  <div class="capsule-details">
+                    <span class="item-title">{{reward.rewardName}}</span>
+                    <span class="item-sub">Reward ID: {{reward.rewardId}}</span>
+                  </div>
+                </div>
+              </td>
+
+              <!-- Rider Info Card Cell -->
+              <td class="col-rider">
+                <div class="agent-card rider">
+                  <div class="agent-avatar">🚴</div>
+                  <div class="agent-data">
+                    <span class="agent-name">{{reward.riderName}}</span>
+                    <span class="agent-email">{{reward.riderEmail}}</span>
+                    <span class="agent-id">ID: {{reward.riderId}}</span>
+                  </div>
+                </div>
+              </td>
+
+              <!-- User Info Card Cell -->
+              <td class="col-user">
+                <div class="agent-card athlete">
+                  <div class="agent-avatar">🏋️</div>
+                  <div class="agent-data">
+                    <span class="agent-name">{{reward.userName}}</span>
+                    <span class="agent-email">{{reward.userEmail}}</span>
+                    <span class="agent-id">ID: {{reward.userId}}</span>
+                  </div>
+                </div>
+              </td>
+
+              <!-- Meta Specs -->
+              <td class="col-meta">
+                <div class="meta-pills">
+                  <span class="order-tag">ORDER #{{reward.orderId}}</span>
+                  <span class="time-tag">⏱️ {{reward.createAt}}</span>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

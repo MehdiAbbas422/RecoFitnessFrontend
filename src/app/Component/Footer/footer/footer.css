@@ -1,0 +1,40 @@
+.gym-footer {
+  background: #000;
+  padding: 80px 40px;
+  color: white;
+  border-top: 1px solid #1a1a1a;
+  /* Gym vibe ke liye dark gradients */
+  background: radial-gradient(circle at 100% 100%, #1a0000 0%, #000 50%);
+}
+
+.footer-container { max-width: 1200px; margin: 0 auto; }
+
+.footer-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px; }
+
+.brand-name { font-size: 3rem; font-weight: 900; letter-spacing: -2px; color: #ff0000; }
+
+.join-btn {
+  padding: 15px 30px;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.join-btn:hover { background: #ff0000; color: white; }
+
+.divider { border: 0; border-top: 1px solid #222; margin-bottom: 30px; }
+
+.footer-bottom { display: flex; justify-content: space-between; font-size: 0.9rem; color: #666; }
+
+.social-links a { 
+  color: white; 
+  text-decoration: none; 
+  margin-right: 30px; 
+  font-weight: 500; 
+}
+
+.legal a { color: #666; text-decoration: none; margin-left: 20px; }

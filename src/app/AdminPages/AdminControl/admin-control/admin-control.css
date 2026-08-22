@@ -1,0 +1,61 @@
+.admin-container {
+    padding: 24px;
+    background: #050505; /* Pure Carbon */
+    min-height: 100vh;
+    font-family: 'Oswald', sans-serif; /* Bold Gym Font */
+}
+
+/* Header with Gym Border */
+.toolbar {
+    background: linear-gradient(90deg, #121212 0%, #1a1a1a 100%);
+    padding: 20px;
+    border-left: 4px solid #3b82f6; /* Electric Blue Accent */
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.toolbar h2 { color: #fff; text-transform: uppercase; letter-spacing: 2px; }
+
+/* The Table - Iron Style */
+.premium-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #0a0a0a;
+}
+
+.premium-table th {
+    color: #3b82f6; /* Neon Blue Header */
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    padding: 20px;
+    border-bottom: 2px solid #3b82f6;
+    text-align: left;
+}
+
+.premium-table td {
+    padding: 20px;
+    color: #d1d5db;
+    border-bottom: 1px solid #1f2937;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+/* Neon Button */
+.btn-activate {
+    background: transparent;
+    color: #3b82f6;
+    border: 1px solid #3b82f6;
+    padding: 8px 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-activate:hover {
+    background: #3b82f6;
+    color: #fff;
+    box-shadow: 0 0 15px #3b82f6;
+}

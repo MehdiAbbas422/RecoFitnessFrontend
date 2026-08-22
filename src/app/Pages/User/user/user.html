@@ -1,0 +1,520 @@
+<div class="dashboard">
+
+ <!-- ================= TOP BAR ================= -->
+
+<div class="topbar">
+
+    <div class="search-box">
+
+        <span class="search-icon">
+            🔍
+        </span>
+
+        <input
+            type="text"
+            placeholder="Search workout, member, payment..." />
+
+    </div>
+
+    <div class="top-right">
+
+        <button class="top-btn" (click)="Message()">
+
+            🔔
+
+            <span class="badge">
+                3
+            </span>
+
+        </button>
+
+        <button class="top-btn" (click)="Reward()">
+            💬
+        </button>
+
+        <div class="profile">
+
+            <img
+            src="https://i.pravatar.cc/150?img=12">
+
+            <div>
+
+                <h4>{{UserName}}</h4>
+
+                <small>Premium Member</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+  <div class="header">
+
+    <div>
+      <h1>Welcome Back 👋</h1>
+      <p>Track your fitness progress and stay consistent.</p>
+    </div>
+
+    <button class="upgrade-btn">
+      Premium Plan
+    </button>
+
+  </div>
+
+  <!-- Cards -->
+
+  <div class="cards">
+
+    <div class="card revenue">
+
+      <div class="icon-box">
+        💰
+      </div>
+
+      <div class="info">
+
+        <span>Total Revenue</span>
+
+        <h2>$18,450</h2>
+
+        <small>+12.8% this month</small>
+
+      </div>
+
+    </div>
+
+    <div class="card workout">
+
+      <div class="icon-box">
+        💪
+      </div>
+
+      <div class="info">
+
+        <span>Today's Workout</span>
+
+        <h2>Chest Day</h2>
+
+        <small>45 Minutes</small>
+
+      </div>
+
+    </div>
+
+    <div class="card calories">
+
+      <div class="icon-box">
+        🔥
+      </div>
+
+      <div class="info">
+
+        <span>Calories</span>
+
+        <h2>1845 kcal</h2>
+
+        <small>Target 2500</small>
+
+      </div>
+
+    </div>
+
+    <div class="card streak">
+
+      <div class="icon-box">
+        🏆
+      </div>
+
+      <div class="info">
+
+        <span>Workout Streak</span>
+
+        <h2>18 Days</h2>
+
+        <small>Keep Going</small>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  
+
+<!-- ========================= -->
+<!-- Dashboard Content -->
+<!-- ========================= -->
+
+<div class="dashboard-grid">
+
+    <!-- LEFT -->
+
+    <div class="left-panel">
+
+        <div class="chart-card">
+
+            <div class="chart-header">
+
+                <div>
+
+                    <h2>Workout Progress</h2>
+
+                    <p>Weekly Performance</p>
+
+                </div>
+
+                <select>
+
+                    <option>This Week</option>
+                    <option>This Month</option>
+
+                </select>
+
+            </div>
+
+            <div class="chart-body">
+
+                <apx-chart
+                    [series]="chartOptions.series"
+                    [chart]="chartOptions.chart"
+                    [stroke]="chartOptions.stroke"
+                    [xaxis]="chartOptions.xaxis"
+                    [grid]="chartOptions.grid"
+                    [tooltip]="chartOptions.tooltip">
+                </apx-chart>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="right-panel">
+
+        <!-- Workout -->
+
+        <div class="workout-summary">
+
+            <div class="summary-header">
+
+                <h2>Today's Workout</h2>
+
+                <span class="status">
+                    Active
+                </span>
+
+            </div>
+
+            <div class="exercise">
+
+                <div class="exercise-icon">
+                    💪
+                </div>
+
+                <div>
+
+                    <h3>Chest & Triceps</h3>
+
+                    <p>Strength Training</p>
+
+                </div>
+
+            </div>
+
+            <div class="progress-group">
+
+                <div class="progress-title">
+
+                    <span>Progress</span>
+
+                    <span>72%</span>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill"></div>
+
+                </div>
+
+            </div>
+
+            <button class="start-btn">
+
+                Start Workout
+
+            </button>
+
+        </div>
+
+        <!-- Activity -->
+
+        <div class="activity-card">
+
+            <h2>Recent Activity</h2>
+
+            <div class="activity">
+
+                <div class="dot green"></div>
+
+                <div>
+
+                    <h4>Workout Completed</h4>
+
+                    <span>2 Hours Ago</span>
+
+                </div>
+
+            </div>
+
+            <div class="activity">
+
+                <div class="dot blue"></div>
+
+                <div>
+
+                    <h4>Diet Updated</h4>
+
+                    <span>Yesterday</span>
+
+                </div>
+
+            </div>
+
+            <div class="activity">
+
+                <div class="dot orange"></div>
+
+                <div>
+
+                    <h4>Payment Successful</h4>
+
+                    <span>3 Days Ago</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- DIET PROGRESS -->
+<!-- ========================= -->
+
+<div class="diet-section">
+
+    <div class="diet-card">
+
+        <div class="diet-header">
+
+            <div>
+
+                <h2>Diet Progress</h2>
+
+                <p>Today's Nutrition</p>
+
+            </div>
+
+            <button class="diet-btn">
+                Update
+            </button>
+
+        </div>
+
+        <div class="nutrition-list">
+
+            <div class="nutrition-item">
+
+                <div class="nutrition-info">
+
+                    <h4>Protein</h4>
+
+                    <span>120g / 180g</span>
+
+                </div>
+
+                <div class="progress">
+
+                    <div class="progress-line protein"></div>
+
+                </div>
+
+            </div>
+
+            <div class="nutrition-item">
+
+                <div class="nutrition-info">
+
+                    <h4>Carbohydrates</h4>
+
+                    <span>220g / 300g</span>
+
+                </div>
+
+                <div class="progress">
+
+                    <div class="progress-line carbs"></div>
+
+                </div>
+
+            </div>
+
+            <div class="nutrition-item">
+
+                <div class="nutrition-info">
+
+                    <h4>Fat</h4>
+
+                    <span>58g / 70g</span>
+
+                </div>
+
+                <div class="progress">
+
+                    <div class="progress-line fat"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!--==========================
+CALORIES CARD
+===========================-->
+
+<div class="calorie-card">
+
+    <div class="calorie-header">
+
+        <div>
+
+            <h2>Calories</h2>
+
+            <p>Daily Goal</p>
+
+        </div>
+
+        <span class="goal">
+
+            2500 kcal
+
+        </span>
+
+    </div>
+
+    <!-- Circle -->
+
+    <div class="circle-wrapper">
+
+        <div class="circle">
+
+            <div class="inner-circle">
+
+                <h2>1845</h2>
+
+                <span>Consumed</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Stats -->
+
+    <div class="calorie-stats">
+
+        <div class="c-stat">
+
+            <h3>655</h3>
+
+            <span>Remaining</span>
+
+        </div>
+
+        <div class="c-stat">
+
+            <h3>74%</h3>
+
+            <span>Completed</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</div>
+
+<!-- \\Reward System -->
+
+<!-- //Address Insert --><!-- ================= REWARD SECTION ================= -->
+
+<section class="reward-section">
+
+  <div class="reward-header">
+    <h2>🎁 Loyalty Rewards</h2>
+    <p>Redeem rewards after completing your required streak.</p>
+  </div>
+
+  @if(AddressStatus){
+    <div class="address-box">
+      <label>Delivery Address</label>
+
+      <textarea
+        rows="3"
+        [(ngModel)]="Address"
+        placeholder="Enter your delivery address">
+      </textarea>
+
+      <button (click)="RewardCollection()">
+        Confirm Reward
+      </button>
+    </div>
+  }
+
+  <div class="reward-grid">
+
+    @for(reward of rewardget; track reward.id){
+
+      <div class="reward-card">
+
+        <div class="month-circle">
+          {{reward.months}}
+          <span>Months</span>
+        </div>
+
+        <h3>{{reward.rewardItem}}</h3>
+
+        <p>{{reward.description}}</p>
+
+        <button
+        class="redeem-btn"
+        (click)="AddressInsert(reward.id)">
+          Redeem Reward
+        </button>
+
+      </div>
+
+    }
+
+  </div>
+
+</section>
+
+<!-- //Reward System End -->
