@@ -22,7 +22,7 @@ import { riderGuard } from './Guard/Delivery/rider-guard';
 import { NotFound } from './Pages/NotFound/not-found/not-found';
 import { superGuardGuard } from './Guard/SuperGuard/super-guard-guard';
 import { Resetpassword } from './Pages/ForgetPassword/resetpassword/resetpassword';
-
+import { Resetpassword as Reset } from './Pages/ResetPassword/resetpassword/resetpassword';
 
 
 export const routes: Routes = [
@@ -42,5 +42,6 @@ export const routes: Routes = [
  {path:'Delivery' , component:Deliverycompleted , canActivate:[userGuard]},
  {path:'reward-given', component:Rewardgiven , canActivate:[adminGuard]},
  {path:'Rider-Profile' , component:Profile , canActivate:[riderGuard]},
+ {path:'reset-password', component:Reset , canActivate:[userGuard]},
  {path:'**', component:NotFound}
 ];

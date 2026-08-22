@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Authservice {
 
-  private apiUrl = 'http://RecoFit.somee.com/api/Auth';
+  private apiUrl = 'https://localhost:7077/api/Auth';
 
   constructor(private http: HttpClient) {}
 
@@ -87,6 +87,10 @@ SaveToken(Token: any) {
     localStorage.removeItem('token');
   }
 
+
+  ProfilePasswordChange(PasswordInfo: string) {
+    return this.http.post(`${this.apiUrl}/reset-password-profile?Password=${PasswordInfo}`, {});
+  }
 
 
   

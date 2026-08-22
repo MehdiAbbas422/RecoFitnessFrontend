@@ -52,7 +52,7 @@ resetPassword() {
       this.emailconfirm.set(false);
        this.Isloading.set(false)
       this.authService.SaveToken(response.token); // Navigate to the login page after successful reset
-      this.router.navigate(['/']); // Navigate to the login page after successful reset
+      this.router.navigate(['/reset-password']); // Navigate to the login page after successful reset
      
     },
     (error:any) => {

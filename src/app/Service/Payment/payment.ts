@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 })
 export class Payment {
 
-  private api ="http://RecoFit.somee.com/api/Payment";
+  private api ="https://localhost:7077/api/Payment";
 constructor(private http: HttpClient) {}
 
 CreatePayment(Id:any):Observable<any>{
