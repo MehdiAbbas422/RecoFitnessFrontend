@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ForgetPassword {
 
-private apiUrl = 'https://localhost:7077/api/Auth';
+private apiUrl = 'http://RecoFit.somee.com/api/Auth';
 
 constructor(private http: HttpClient) {}
 

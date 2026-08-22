@@ -7,7 +7,7 @@ import { MessageDto } from '../../Models/Chatting/MessageDto';
 })
 export class Chat {
 
-  private apiUrl = 'https://localhost:7077/api/Message';
+  private apiUrl = 'http://RecoFit.somee.com/api/Message';
 
   constructor(private http: HttpClient) {}
 
