@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AiService {
-  private apiUrl = 'http://RecoFit.somee.com/api/AI';
+  private apiUrl = '/api/AI';
 
   constructor(private http: HttpClient) {}
 

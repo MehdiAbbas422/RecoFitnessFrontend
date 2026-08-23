@@ -10,7 +10,7 @@ import {UserInfo} from '../../../Models/AdminUser/AdminUser';
 export class Adminuser {
 
 
-private apiUrl = 'http://RecoFit.somee.com/api/';
+private apiUrl = '/api/';
 constructor(private http: HttpClient) {}
 
 GetUsers(page:number ,search :string): Observable<UserInfo> {

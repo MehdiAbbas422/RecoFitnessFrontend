@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Authservice {
 
-  private apiUrl = 'http://RecoFit.somee.com/api/Auth';
+  private apiUrl = '/api/Auth';
 
   constructor(private http: HttpClient) {}
 

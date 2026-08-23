@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Rewardformality {
 
-private apiUrl = 'http://RecoFit.somee.com/api/';
+private apiUrl = '/api/';
 constructor(private http: HttpClient) {}
 
 

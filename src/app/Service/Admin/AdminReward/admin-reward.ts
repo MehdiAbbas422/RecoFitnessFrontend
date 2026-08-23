@@ -10,7 +10,7 @@ import { RewardGet } from '../../../Models/Reward/Reward';
   providedIn: 'root',
 })
 export class AdminReward {
-private apiUrl = 'http://RecoFit.somee.com/api/';
+private apiUrl = '/api/';
 constructor(private http: HttpClient) {}
 
 RewardSet(Reward: RewardCreate) {

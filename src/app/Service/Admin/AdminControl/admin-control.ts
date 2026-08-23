@@ -9,7 +9,7 @@ import { AdminDeactivate } from '../../../Models/AdminControl/AdminControl';
   providedIn: 'root',
 })
 export class AdminControl {
-  private apiUrl = 'http://RecoFit.somee.com/api/';
+  private apiUrl = '/api/';
 private constructor(private http: HttpClient) {}
 
 UserDeactivate(User: any) {
