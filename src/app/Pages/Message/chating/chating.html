@@ -1,90 +1,90 @@
 <div class="app-container">
-    <!-- Left Sidebar: Sender List -->
-    <div class="sidebar">
-        <p>sender-list works!</p>
-        <div class="search-container">
-            <input type="text" [(ngModel)]="Keyword" placeholder="Search members..." />
-            <button class="btn-activate" (click)="GetList(Keyword)">Filter</button>
-        </div>
-
-        <div class="user-list">
-            <table>
-                <tbody>
-                    @for (user of Users; track $index) {
-                        <tr (click)="OpenChat(user.id, user.name)">
-                            <td>
-                                <div class="user-item-content">
-                                    <img src="assets/user.png" alt="Avatar">
-                                    <div style="font-weight:700; font-size:1.1rem; color:#fff;">{{ user.name }}</div>
-                                </div>
-                                <button class="hello-btn">Chat</button>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+  <!-- Left Sidebar: Sender List -->
+  <div class="sidebar">
+    <div class="search-container">
+      <input type="text" [(ngModel)]="Keyword" placeholder="Search members..." />
+      <button class="btn-activate" (click)="GetList(Keyword)">Filter</button>
     </div>
 
-    <!-- Right Side: Chat Window -->
-    <div class="chat-container">
-        <!-- Chat Header -->
-        <div class="chat-header">
-            <div class="user-info">
-                <div class="avatar-wrapper">
-                    <img src="assets/user.png" alt="User Avatar">
-                    <span class="status-dot"></span>
-                </div>
-                <div class="user-details">
-                    <h3>{{receiverName}}</h3>
-                    <span class="status-text">Active Now</span>
-                </div>
-            </div>
+    <div class="user-list">
+      @for (user of Users; track $index) {
+        <div class="user-card" (click)="OpenChat(user.id, user.name)">
+          <div class="user-item-content">
+            <img src="assets/user.png" alt="Avatar" />
+            <div class="user-name">{{ user.name }}</div>
+          </div>
+          <button class="hello-btn">Chat</button>
         </div>
+      }
+    </div>
+  </div>
 
-        <!-- Chat Body -->
-        <div class="chat-body">
-            @for(message of ChattingList; track $index){
-                <div class="message" [class.me]="message.senderId==currentUserId">
-                    <img *ngIf="message.senderId!=currentUserId" src="assets/user.png" alt="Sender Avatar">
-                    <div class="bubble">
-                        @if(message.messageText){
-                            <p>{{message.messageText}}</p>
-                        }
-                    
-                        @if(message.voiceUrl){
-                            <audio controls>
-                                <source [src]="'https://localhost:7077/' + message.voiceUrl" type="audio/webm">
-                                fererfrrf
-                            </audio>
-                        }
-                        <span class="time">{{message.createdAt | date:'shortTime'}}</span>
-                    </div>
-                </div>
+  <!-- Right Side: Chat Window -->
+  <div class="chat-container">
+    <!-- Chat Header -->
+    <div class="chat-header">
+      <div class="user-info">
+        <div class="avatar-wrapper">
+          <img src="assets/user.png" alt="User Avatar" />
+          <span class="status-dot"></span>
+        </div>
+        <div class="user-details">
+          <h3>{{ receiverName || 'Select a user' }}</h3>
+          <span class="status-text">Active Now</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Body -->
+    <div class="chat-body">
+      @for (message of ChattingList; track $index) {
+        <div class="message" [class.me]="message.senderId == currentUserId">
+          @if (message.senderId != currentUserId) {
+            <img src="assets/user.png" alt="Sender Avatar" />
+          }
+          <div class="bubble">
+            @if (message.messageText) {
+              <p>{{ message.messageText }}</p>
             }
-        </div>
 
-        <!-- Chat Footer -->
-        <div class="chat-footer">
-            <div class="input-wrapper">
-                <input 
-                    type="text"
-                    [(ngModel)]="newMessage"
-                    (keydown.enter)="SendMessage()"
-                    placeholder="Type your message here...">
-            </div>
-            <button (click)="SendMessage()" title="Send Message">
-                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                </svg>
-            </button>
-                        <button 
-                        (pointerdown)="StartRecording()" 
-                        (pointerup)="stopRecording()"
-                        [class.recording]="IsRecording()">
-                        {{ IsRecording() ? '...Recording' : 'Hold To Record' }}
-                    </button>
+            @if (message.voiceUrl) {
+              <div class="audio-wrapper">
+                <audio controls>
+                  <source [src]="'https://localhost:7077/' + message.voiceUrl" type="audio/webm" />
+                  Your browser does not support audio elements.
+                </audio>
+              </div>
+            }
+            <span class="time">{{ message.createdAt | date: 'shortTime' }}</span>
+          </div>
         </div>
+      }
     </div>
+
+    <!-- Chat Footer -->
+    <div class="chat-footer">
+      <div class="input-wrapper">
+        <input 
+          type="text" 
+          [(ngModel)]="newMessage" 
+          (keydown.enter)="SendMessage()" 
+          placeholder="Type your message here..." />
+      </div>
+
+      <button class="btn-send" (click)="SendMessage()" title="Send Message">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+
+      <button 
+        class="btn-record"
+        (pointerdown)="StartRecording()" 
+        (pointerup)="stopRecording()"
+        [class.recording]="IsRecording()">
+        {{ IsRecording() ? '...Recording' : 'Hold To Record' }}
+      </button>
+    </div>
+  </div>
 </div>

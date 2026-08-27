@@ -2,6 +2,7 @@
   <div class="auth-container">
     <div class="brand-logo">RECOFIT</div>
     <h2>PLEASE LOG IN</h2>
+    <p class="sub-text">Welcome back! Access your fitness account.</p>
 
     <form (ngSubmit)="Login()" #loginForm="ngForm" ngNativeValidate> 
       <div class="input-group">
@@ -12,7 +13,6 @@
           placeholder="Enter your email"
           [disabled]="Isloading()" 
           [(ngModel)]="LoginInfo.Email" 
-          (keyup.enter)="Login()" 
           required>
       </div>
 
@@ -24,20 +24,20 @@
           placeholder="Enter your password"
           [disabled]="Isloading()" 
           [(ngModel)]="LoginInfo.Password" 
-          (keyup.enter)="Login()" 
           required>
       </div>
 
-      <input 
+      <button 
         type="submit" 
-        [value]="Isloading() ? '...Loading' : 'Login'" 
         class="btn-gradient" 
         [disabled]="Isloading()">
+        {{ Isloading() ? '...Loading' : 'Login' }}
+      </button>
     </form>
 
     <div class="auth-links">
       <p>Don't have an account? <a routerLink="/signup">Sign Up</a></p>
-      <p>Forgot Password? <a routerLink="/resetpassword">Reset Here</a></p>
+      <p style="margin-top: 8px;">Forgot Password? <a routerLink="/resetpassword">Reset Here</a></p>
     </div>
   </div>
 </div>
