@@ -1,6 +1,10 @@
-<div class="app-container">
+<div class="app-container" [class.chat-active]="selectedUserId">
   <!-- Left Sidebar: Sender List -->
   <div class="sidebar">
+    <div class="sidebar-header">
+      <h2>Messages</h2>
+    </div>
+
     <div class="search-container">
       <input type="text" [(ngModel)]="Keyword" placeholder="Search members..." />
       <button class="btn-activate" (click)="GetList(Keyword)">Filter</button>
@@ -11,7 +15,10 @@
         <div class="user-card" (click)="OpenChat(user.id, user.name)">
           <div class="user-item-content">
             <img src="assets/user.png" alt="Avatar" />
-            <div class="user-name">{{ user.name }}</div>
+            <div class="user-info-text">
+              <span class="user-name">{{ user.name }}</span>
+              <span class="user-subtext">Click to start chatting</span>
+            </div>
           </div>
           <button class="hello-btn">Chat</button>
         </div>
@@ -21,70 +28,85 @@
 
   <!-- Right Side: Chat Window -->
   <div class="chat-container">
-    <!-- Chat Header -->
-    <div class="chat-header">
-      <div class="user-info">
-        <div class="avatar-wrapper">
-          <img src="assets/user.png" alt="User Avatar" />
-          <span class="status-dot"></span>
-        </div>
-        <div class="user-details">
-          <h3>{{ receiverName || 'Select a user' }}</h3>
-          <span class="status-text">Active Now</span>
-        </div>
-      </div>
-    </div>
+    @if (selectedUserId) {
+      <!-- Active Chat Header -->
+      <div class="chat-header">
+        <button class="back-btn" (click)="selectedUserId = null" title="Back to user list">
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </button>
 
-    <!-- Chat Body -->
-    <div class="chat-body">
-      @for (message of ChattingList; track $index) {
-        <div class="message" [class.me]="message.senderId == currentUserId">
-          @if (message.senderId != currentUserId) {
-            <img src="assets/user.png" alt="Sender Avatar" />
-          }
-          <div class="bubble">
-            @if (message.messageText) {
-              <p>{{ message.messageText }}</p>
-            }
-
-            @if (message.voiceUrl) {
-              <div class="audio-wrapper">
-                <audio controls>
-                  <source [src]="'https://localhost:7077/' + message.voiceUrl" type="audio/webm" />
-                  Your browser does not support audio elements.
-                </audio>
-              </div>
-            }
-            <span class="time">{{ message.createdAt | date: 'shortTime' }}</span>
+        <div class="user-info">
+          <div class="avatar-wrapper">
+            <img src="assets/user.png" alt="User Avatar" />
+            <span class="status-dot"></span>
+          </div>
+          <div class="user-details">
+            <h3>{{ receiverName }}</h3>
+            <span class="status-text">Active Now</span>
           </div>
         </div>
-      }
-    </div>
-
-    <!-- Chat Footer -->
-    <div class="chat-footer">
-      <div class="input-wrapper">
-        <input 
-          type="text" 
-          [(ngModel)]="newMessage" 
-          (keydown.enter)="SendMessage()" 
-          placeholder="Type your message here..." />
       </div>
 
-      <button class="btn-send" (click)="SendMessage()" title="Send Message">
-        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="22" y1="2" x2="11" y2="13"></line>
-          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-        </svg>
-      </button>
+      <!-- Chat Body -->
+      <div class="chat-body">
+        @for (message of ChattingList; track $index) {
+          <div class="message" [class.me]="message.senderId == currentUserId">
+            @if (message.senderId != currentUserId) {
+              <img src="assets/user.png" alt="Sender Avatar" />
+            }
+            <div class="bubble">
+              @if (message.messageText) {
+                <p>{{ message.messageText }}</p>
+              }
 
-      <button 
-        class="btn-record"
-        (pointerdown)="StartRecording()" 
-        (pointerup)="stopRecording()"
-        [class.recording]="IsRecording()">
-        {{ IsRecording() ? '...Recording' : 'Hold To Record' }}
-      </button>
-    </div>
+              @if (message.voiceUrl) {
+                <div class="audio-wrapper">
+                  <audio controls>
+                    <source [src]="'https://localhost:7077/' + message.voiceUrl" type="audio/webm" />
+                  </audio>
+                </div>
+              }
+              <span class="time">{{ message.createdAt | date: 'shortTime' }}</span>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Chat Footer -->
+      <div class="chat-footer">
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            [(ngModel)]="newMessage" 
+            (keydown.enter)="SendMessage()" 
+            placeholder="Type your message..." />
+        </div>
+
+        <button class="btn-send" (click)="SendMessage()" title="Send Message">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+
+        <button 
+          class="btn-record"
+          (pointerdown)="StartRecording()" 
+          (pointerup)="stopRecording()"
+          [class.recording]="IsRecording()">
+          {{ IsRecording() ? '🔴' : '🎤' }}
+        </button>
+      </div>
+    } @else {
+      <!-- Empty State for Laptop/Desktop -->
+      <div class="no-chat-selected">
+        <div class="empty-icon">💬</div>
+        <h3>Select a user to start chatting</h3>
+        <p>Choose anyone from the sidebar to open conversation.</p>
+      </div>
+    }
   </div>
 </div>
