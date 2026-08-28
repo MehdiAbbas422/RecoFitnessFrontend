@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+/* Body aur HTML ke default margins/padding remove karne ke liye */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* Right side white gap fix */
+  background-color: #0d0d10; /* Dark background match */
+}

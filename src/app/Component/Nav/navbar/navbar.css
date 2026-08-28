@@ -1,3 +1,13 @@
+/* Global Reset to eliminate right-side white gap */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: #0d0d10;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,6 +16,7 @@
 
 .navbar-container {
   width: 100%;
+  max-width: 100%;
   height: 75px;
   background: rgba(23, 23, 25, 0.85);
   backdrop-filter: blur(15px);
