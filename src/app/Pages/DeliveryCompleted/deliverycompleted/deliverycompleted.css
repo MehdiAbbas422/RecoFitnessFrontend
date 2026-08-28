@@ -8,6 +8,10 @@
   color: #ffffff;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .dark-gym-page {
   background-color: #080b11;
   min-height: 100vh;
@@ -16,6 +20,7 @@
   box-sizing: border-box;
   max-width: 1300px;
   margin: 0 auto;
+  width: 100%;
 }
 
 /* --- Hero Banner --- */
@@ -30,6 +35,7 @@
   align-items: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 255, 136, 0.08);
   margin-bottom: 2rem;
+  gap: 1.5rem;
 }
 
 .badge-tag {
@@ -41,6 +47,7 @@
   border-radius: 20px;
   letter-spacing: 1px;
   border: 1px solid rgba(0, 255, 136, 0.3);
+  display: inline-block;
 }
 
 .hero-left h1 {
@@ -66,6 +73,7 @@
   border-radius: 12px;
   text-align: right;
   box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+  white-space: nowrap;
 }
 
 .p-label {
@@ -89,10 +97,10 @@
   color: #ffffff;
 }
 
-/* --- Stats Grid (Fills Empty Space) --- */
+/* --- Stats Grid --- */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
   margin-bottom: 2rem;
 }
@@ -116,6 +124,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 10px;
+  flex-shrink: 0;
 }
 
 .stat-card h4 {
@@ -136,7 +145,8 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   padding: 1.5rem;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  width: 100%;
 }
 
 .table-header {
@@ -176,17 +186,21 @@
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 /* --- Cyber Table Styling --- */
 .table-responsive {
+  width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .cyber-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
+  min-width: 650px;
 }
 
 .cyber-table th {
@@ -212,6 +226,7 @@
   color: #e2e8f0;
   font-size: 0.95rem;
   vertical-align: middle;
+  white-space: nowrap;
 }
 
 .user-info {
@@ -230,6 +245,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .user-name {
@@ -245,6 +261,7 @@
   font-size: 0.85rem;
   font-weight: 600;
   border: 1px solid rgba(56, 189, 248, 0.2);
+  display: inline-block;
 }
 
 .item-name {
@@ -275,6 +292,7 @@
   letter-spacing: 1px;
   transition: all 0.2s ease;
   box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+  white-space: nowrap;
 }
 
 .btn-accept:hover {
@@ -285,4 +303,71 @@
 
 .btn-accept:active {
   transform: translateY(0);
+}
+
+/* =========================================
+   MEDIA QUERIES (RESPONSIVENESS)
+   ========================================= */
+
+@media (max-width: 992px) {
+  .dark-gym-page {
+    padding: 1.5rem;
+  }
+  
+  .hero-left h1 {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .reward-hero-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+  }
+
+  .hero-right {
+    width: 100%;
+  }
+
+  .points-box {
+    text-align: left;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .p-value {
+    font-size: 2.4rem;
+  }
+
+  .table-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dark-gym-page {
+    padding: 1rem 0.8rem;
+  }
+
+  .hero-left h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-left p {
+    font-size: 0.9rem;
+  }
+
+  .table-card {
+    padding: 1rem 0.8rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
