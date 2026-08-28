@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Authservice } from '../../../Service/AuthService/authservice';
 import { Chat } from '../../../Service/Message1/chat';
 import { MessageDto } from '../../../Models/Chatting/MessageDto';
-import {ChangeDetectorRef} from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { signal } from '@angular/core';
 
 @Component({
@@ -16,13 +16,13 @@ import { signal } from '@angular/core';
   styleUrls: ['./chating.css'],
 })
 export class Chating implements OnInit {
+  selectedUserId: number | string | null = null; // Netlify Build Fix
 
+  IsRecording = signal(false);
 
- IsRecording = signal(false);
-
-  private mediaRecorder ?: MediaRecorder ; 
-  private audioChucks : Blob[] = [];
-  private mediaStream ?: MediaStream;
+  private mediaRecorder?: MediaRecorder;
+  private audioChucks: Blob[] = [];
+  private mediaStream?: MediaStream;
   private StartTime = 0;
 
   ChattingList: any[] = [];
@@ -34,149 +34,118 @@ export class Chating implements OnInit {
   currentUserId!: number;
   receiverName!: string;
 
-Keyword: string = '';
+  Keyword: string = '';
   Users: any[] = [];
 
   constructor(
     private chatService: Chat,
     private route: ActivatedRoute,
     private authService: Authservice,
-    private cdr :ChangeDetectorRef
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-
-
     this.currentUserId = Number(this.authService.GetId());
-    
     this.GetList(this.Keyword);
-
   }
 
   loadMessages(receiverId: number): void {
-
-    this.chatService.GetMessages(receiverId).subscribe(data => {
-
+    this.chatService.GetMessages(receiverId).subscribe((data) => {
       this.ChattingList = data;
-
       console.log('Messages loaded:', data);
-      this.cdr.detectChanges()
-
+      this.cdr.detectChanges();
     });
-
   }
 
   SendMessage(): void {
-
     if (!this.newMessage.trim()) return;
 
     const dto: MessageDto = {
-
       ReceiverId: this.receiverId,
-
       MessageText: this.newMessage,
-
-      Image : '1234556' // Placeholder for image, replace with actual image data if needed  
-
+      Image: '1234556', // Placeholder for image
     };
 
     this.chatService.SendMessage(dto).subscribe({
-
       next: () => {
-
         this.newMessage = '';
-
         this.loadMessages(this.receiverId);
-
       },
-
-      error: err => console.log(err)
-
+      error: (err) => console.log(err),
     });
-
   }
 
-  
   GetList(Keyword?: string): void {
-    try{
-    this.chatService.GetListOfUsers(Keyword).subscribe((data) => {
-      this.Users = data;
-      console.log('Users List:', this.Users); // Final list dekhein
-    this.cdr.detectChanges()
-    });}
-    catch(error){
+    try {
+      this.chatService.GetListOfUsers(Keyword).subscribe((data) => {
+        this.Users = data;
+        console.log('Users List:', this.Users);
+        this.cdr.detectChanges();
+      });
+    } catch (error) {
       console.error('Error fetching users:', error);
     }
   }
 
-  async StartRecording()  {
-    try{
-        this.audioChucks = [];
-        this.mediaStream= await navigator.mediaDevices.getUserMedia({audio:true});
-         this.mediaRecorder = new MediaRecorder(this.mediaStream);
-        this.StartTime = Date.now();
-        
-        this.mediaRecorder.ondataavailable =(e)=>
-        {
-          if(e.data.size>0)
-          {
-            this.audioChucks.push(e.data);
-          }
+  async StartRecording() {
+    try {
+      this.audioChucks = [];
+      this.mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      this.mediaRecorder = new MediaRecorder(this.mediaStream);
+      this.StartTime = Date.now();
+
+      this.mediaRecorder.ondataavailable = (e) => {
+        if (e.data.size > 0) {
+          this.audioChucks.push(e.data);
         }
-        
-        this.IsRecording.set(true);
-        this.mediaRecorder.start();
-    }
-    catch(err) {
+      };
+
+      this.IsRecording.set(true);
+      this.mediaRecorder.start();
+    } catch (err) {
       console.log(err);
     }
   }
-  
-  async stopRecording()
-  {
-      if (!this.mediaRecorder || this.mediaRecorder.state === 'inactive') return;
 
-    this.mediaRecorder.onstop = ()=>
-    {
-        const duration = Math.floor((Date.now() - this.StartTime) / 1000);
-        const audioBlod = new Blob(this.audioChucks,  {type: 'audio/webm'});
-        const voice =  new File([audioBlod], 'voice.webm', {type: ' audio/webm'});
+  async stopRecording() {
+    if (!this.mediaRecorder || this.mediaRecorder.state === 'inactive') return;
+
+    this.mediaRecorder.onstop = () => {
+      const duration = Math.floor((Date.now() - this.StartTime) / 1000);
+      const audioBlod = new Blob(this.audioChucks, { type: 'audio/webm' });
+      const voice = new File([audioBlod], 'voice.webm', { type: ' audio/webm' });
       const recivedId = this.receiverId;
       if (!voice && !recivedId) return;
       this.SendVoice(voice, duration, recivedId);
-      
-      this.mediaStream?.getTracks().forEach(track => track.stop());
+
+      this.mediaStream?.getTracks().forEach((track) => track.stop());
       this.IsRecording.set(false);
+    };
 
-      }
+    this.mediaRecorder.stop();
+    this.mediaStream = await navigator.mediaDevices.getUserMedia({ audio: false });
+  }
 
-this.mediaRecorder.stop();
-this.mediaStream= await navigator.mediaDevices.getUserMedia({audio:false});
-    }
-
-
-    private SendVoice(voice: File, duration: number, receiverId: number) 
-    {
-        const formData = new FormData();
-        formData.append('voice', voice);
-        formData.append('voiceDuration', duration.toString());
-        formData.append('receiverId', receiverId.toString());
-        this.chatService.VoiceMessage(formData).subscribe({
-          next: () => {
-            console.log('Voice message sent successfully');
+  private SendVoice(voice: File, duration: number, receiverId: number) {
+    const formData = new FormData();
+    formData.append('voice', voice);
+    formData.append('voiceDuration', duration.toString());
+    formData.append('receiverId', receiverId.toString());
+    this.chatService.VoiceMessage(formData).subscribe({
+      next: () => {
+        console.log('Voice message sent successfully');
         this.loadMessages(receiverId);
-          },
-          error: (err) => {
-            console.error('Error sending voice message:', err);
-          }
-        });
-    }
+      },
+      error: (err) => {
+        console.error('Error sending voice message:', err);
+      },
+    });
+  }
 
-
-  OpenChat(userId:number, userName:string):void{
+  OpenChat(userId: number, userName: string): void {
+    this.selectedUserId = userId; // HTML template class sync ke liye
     this.receiverId = userId;
     this.receiverName = userName;
     this.loadMessages(this.receiverId);
   }
-
 }
