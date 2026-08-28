@@ -1,70 +1,106 @@
-<div class="wrapper">
-
-  <h1>Overview</h1>
-
-  <div class="cards">
-
-    <div class="card">
-      <h3>Gross Revenue</h3>
-      <span>$171,610.25</span>
-      <p>+5.29%</p>
-      <button (click)="Load()">View Details</button>
+<div class="dashboard-wrapper">
+  <!-- Header Section -->
+  <div class="dashboard-header">
+    <div>
+      <h1>Gym Earnings Analytics</h1>
+      <p>Real-time revenue, active subscriptions, and user metrics.</p>
     </div>
-
-    <div class="card">
-      <h3>Auto Trades</h3>
-      <span>3612</span>
-      <p>+1259</p>
-    </div>
-
-    <div class="card">
-      <h3>New Assets</h3>
-      <span>53</span>
-      <p>+21</p>
-    </div>
-
+    <button class="primary-btn" (click)="Load()">
+      <i class="fa-solid fa-rotate-right"></i> Refresh Data
+    </button>
   </div>
 
-  <div class="content">
-
-    <div class="chart-box">
-
-      <h2>Auto Trades Chart</h2>
-
-      <apx-chart
-        [series]="chartOptions.series"
-        [chart]="chartOptions.chart"
-        [stroke]="chartOptions.stroke"
-        [xaxis]="chartOptions.xaxis"
-        [grid]="chartOptions.grid"
-        [tooltip]="chartOptions.tooltip">
-      </apx-chart>
-
-            <apx-chart
-        [series]="UserchartOptions.series"
-        [chart]="UserchartOptions.chart"
-        [stroke]="UserchartOptions.stroke"
-        [xaxis]="UserchartOptions.xaxis"
-        [grid]="UserchartOptions.grid"
-        [tooltip]="UserchartOptions.tooltip">
-      </apx-chart>
-
+  <!-- KPI Top Cards Grid -->
+  <div class="cards-grid">
+    <div class="stat-card">
+      <div class="card-header">
+        <div class="icon-box purple">
+          <i class="fa-solid fa-wallet"></i>
+        </div>
+        <span class="badge positive">+5.29%</span>
+      </div>
+      <div class="card-body">
+        <h3>Gross Revenue</h3>
+        <span class="stat-value">$171,610.25</span>
+      </div>
     </div>
 
-    <div class="asset-box">
+    <div class="stat-card">
+      <div class="card-header">
+        <div class="icon-box blue">
+          <i class="fa-solid fa-users"></i>
+        </div>
+        <span class="badge positive">+1,259</span>
+      </div>
+      <div class="card-body">
+        <h3>Active Memberships</h3>
+        <span class="stat-value">3,612</span>
+      </div>
+    </div>
 
-      <h2>Assets</h2>
+    <div class="stat-card">
+      <div class="card-header">
+        <div class="icon-box emerald">
+          <i class="fa-solid fa-dumbbell"></i>
+        </div>
+        <span class="badge positive">+21</span>
+      </div>
+      <div class="card-body">
+        <h3>PT & Add-on Sales</h3>
+        <span class="stat-value">53</span>
+      </div>
+    </div>
+  </div>
 
-      <div
-        class="asset"
-        *ngFor="let item of assets">
-
-        {{item}}
-
+  <!-- Main Analytics Layout -->
+  <div class="dashboard-content">
+    <!-- Chart Section -->
+    <div class="chart-panel">
+      <div class="panel-header">
+        <h2>Revenue & Member Growth Trends</h2>
       </div>
 
+      <div class="charts-container">
+        <div class="chart-box">
+          <h3>Monthly Earnings Overview</h3>
+          <apx-chart
+            [series]="chartOptions.series"
+            [chart]="chartOptions.chart"
+            [stroke]="chartOptions.stroke"
+            [xaxis]="chartOptions.xaxis"
+            [grid]="chartOptions.grid"
+            [tooltip]="chartOptions.tooltip">
+          </apx-chart>
+        </div>
+
+        <div class="chart-box">
+          <h3>User Subscriptions Growth</h3>
+          <apx-chart
+            [series]="UserchartOptions.series"
+            [chart]="UserchartOptions.chart"
+            [stroke]="UserchartOptions.stroke"
+            [xaxis]="UserchartOptions.xaxis"
+            [grid]="UserchartOptions.grid"
+            [tooltip]="UserchartOptions.tooltip">
+          </apx-chart>
+        </div>
+      </div>
     </div>
 
-  </div>
+    <!-- Gym Assets / Package Breakdown -->
+    <div class="side-panel">
+      <div class="panel-header">
+        <h2>Active Plans & Assets</h2>
+      </div>
 
+      <div class="asset-list">
+        <div class="asset-item" *ngFor="let item of assets">
+          <div class="asset-icon">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <span class="asset-text">{{ item }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
