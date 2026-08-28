@@ -65,7 +65,7 @@
               @if (message.voiceUrl) {
                 <div class="audio-wrapper">
                   <audio controls>
-                    <source [src]="'http://RecoFit.somee.com/api/' + message.voiceUrl" type="audio/webm" />
+                    <source [src]="'/api/' + message.voiceUrl" type="audio/webm" />
                   </audio>
                 </div>
               }
